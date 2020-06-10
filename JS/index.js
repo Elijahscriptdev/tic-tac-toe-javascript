@@ -23,28 +23,68 @@ const Board = () => {
     }
   };
 
-  // let winner = false;
-  // let draw = false;
-  return { getBoard, updateBoard };
+  let across1 = (coin) => {
+    console.log(getBoard());
+    if (
+      gameBoard[0][0] === gameBoard[1][1] &&
+      gameBoard[0][0] === gameBoard[2][2] &&
+      gameBoard[0][0] === coin
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const across2 = (coin) => {
+    if (
+      gameBoard[0][2] === gameBoard[1][1] &&
+      gameBoard[0][2] === gameBoard[2][0] &&
+      gameBoard[0][2] === coin
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  const sidesHorizontal = (coin) => {
+    for (let i = 0; i < gameBoard.length; i++) {
+      if (
+        gameBoard[i][0] === gameBoard[i][1] &&
+        gameBoard[i][0] === gameBoard[i][2] &&
+        gameBoard[i][0] === coin
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const sidesVertical = (coin) => {
+    for (let i = 0; i < gameBoard.length; i++) {
+      if (
+        gameBoard[0][i] === gameBoard[1][i] &&
+        gameBoard[0][i] === gameBoard[2][i] &&
+        gameBoard[0][i] === coin
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const won = (coin) => {
+    if (
+      (across1(coin) === true || across2(coin) === true,
+      sidesHorizontal(coin) === true,
+      sidesVertical(coin) === true)
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  return { getBoard, updateBoard, won };
 };
-
-// let coolBoard = Board();
-// console.log(coolBoard.getBoard());
-
-function restart() {
-  // do something when cell are filled
-}
-
-// const winners = {
-//   row1: [1, 2, 3],
-//   row2: [4, 5, 6],
-//   row3: [7, 8, 9],
-//   row4: [1, 4, 7],
-//   row5: [2, 5, 8],
-//   row6: [3, 6, 9],
-//   row7: [1, 5, 9],
-//   row8: [3, 5, 7]
-// }
 
 const cells = document.querySelectorAll("[data-cell]");
 
@@ -61,10 +101,18 @@ function handleClick() {
   if (currentPlayer === player2) {
     choice.appendChild(document.createTextNode(player2.coin));
     coolBoard.updateBoard(this.id, player2.coin);
+    // console.log(coolBoard.won(player2.coin));
+    if (coolBoard.won(player2.coin) === true) {
+      console.log(`${player2.name} is the winner`);
+    }
     currentPlayer = player1;
   } else {
     choice.appendChild(document.createTextNode(player1.coin));
     coolBoard.updateBoard(this.id, player1.coin);
+    // console.log(coolBoard.won(player1.coin));
+    if (coolBoard.won(player1.coin) === true) {
+      console.log(`${player1.name} is the winner`);
+    }
     currentPlayer = player2;
   }
   //
