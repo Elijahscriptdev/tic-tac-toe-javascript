@@ -9,7 +9,7 @@
 
 ### Homepage
 
-![Homepage](https://github.com/sz16900/library/blob/development/library.png?raw=true)
+
 
 ---
 
