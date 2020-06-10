@@ -23,6 +23,17 @@ const Board = () => {
     }
   };
 
+  const draw = () => {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        if (gameBoard[i][j].length > 1) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
   let across1 = (coin) => {
     console.log(getBoard());
     if (
@@ -83,7 +94,7 @@ const Board = () => {
     return false;
   };
 
-  return { getBoard, updateBoard, won };
+  return { getBoard, updateBoard, won, draw };
 };
 
 const cells = document.querySelectorAll("[data-cell]");
@@ -105,6 +116,9 @@ function handleClick() {
     if (coolBoard.won(player2.coin) === true) {
       console.log(`${player2.name} is the winner`);
     }
+    if (coolBoard.draw() === true) {
+      console.log("Its a draw");
+    }
     currentPlayer = player1;
   } else {
     choice.appendChild(document.createTextNode(player1.coin));
@@ -112,6 +126,9 @@ function handleClick() {
     // console.log(coolBoard.won(player1.coin));
     if (coolBoard.won(player1.coin) === true) {
       console.log(`${player1.name} is the winner`);
+    }
+    if (coolBoard.draw() === true) {
+      console.log("Its a draw");
     }
     currentPlayer = player2;
   }
