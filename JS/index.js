@@ -97,6 +97,7 @@ const Board = () => {
   return { getBoard, updateBoard, won, draw };
 };
 
+// INITIALIZE EVERYTHING
 const cells = document.querySelectorAll("[data-cell]");
 
 const player1 = Player("seth", "X");
