@@ -12,6 +12,16 @@ const Board = () => {
     ['seven', 'eight', 'nine'],
   ];
 
+  let currentPlayer = 'X';
+  const getCurrentPlayer = () => currentPlayer;
+  const changeCurrentPlayer = () => {
+    if (currentPlayer === 'X') {
+      currentPlayer = 'O';
+    } else {
+      currentPlayer = 'X';
+    }
+  };
+
   const getBoard = () => gameBoard;
 
   const updateBoard = (position, coin) => {
@@ -98,7 +108,42 @@ const Board = () => {
     updateBoard,
     won,
     draw,
+    getCurrentPlayer,
+    changeCurrentPlayer,
   };
+};
+
+const logicOfGame = (player1, player2, gameBoard, cellId) => {
+  const placeMove = () => {
+    if (gameBoard.currentPlayer === player2.coin) {
+      gameBoard.updateBoard(cellId, player2.coin);
+      if (gameBoard.won(player2.coin) === true) {
+        console.log(`${player2.name} is the winner`);
+      }
+      if (gameBoard.draw() === true) {
+        console.log('Its a draw');
+      }
+      gameBoard.changeCurrentPlayer();
+    } else {
+      gameBoard.updateBoard(cellId, player1.coin);
+      if (gameBoard.won(player1.coin) === true) {
+        console.log(`${player1.name} is the winner`);
+      }
+      if (gameBoard.draw() === true) {
+        console.log('Its a draw');
+      }
+      gameBoard.changeCurrentPlayer();
+    }
+  };
+  return { placeMove };
+};
+
+const updatePageBoard = (cellId, coin) => {
+  const currentCell = document.getElementById(cellId);
+  const choice = document.createElement('p');
+  choice.setAttribute('class', 'choice');
+  choice.appendChild(document.createTextNode(coin));
+  currentCell.appendChild(choice);
 };
 
 const initializeGame = () => {
@@ -108,6 +153,7 @@ const initializeGame = () => {
   const input2 = document.getElementById('player-2').value;
   const player1 = Player(input1, 'X');
   const player2 = Player(input2, 'O');
+  const gameBoard = Board();
 
   // Lets hide the form
   const playerInput = document.getElementById('player-input');
@@ -119,46 +165,20 @@ const initializeGame = () => {
   const boardId = document.getElementById('board');
   boardId.classList.remove('hidden');
   mainContainer.append(boardId);
+
+  // Initialize the cells attributes with event listeners
+  const cells = document.querySelectorAll('[data-cell]');
+
+  cells.forEach((cell) => {
+    cell.addEventListener(
+      'click',
+      () => {
+        updatePageBoard(cell.id, gameBoard.getCurrentPlayer());
+        logicOfGame(player1, player2, gameBoard, cell.id).placeMove();
+      },
+      {
+        once: true,
+      }
+    );
+  });
 };
-
-// INITIALIZE EVERYTHING
-// const cells = document.querySelectorAll('[data-cell]');
-
-// // const player1 = Player('seth', 'X');
-// // const player2 = Player('eli', 'O');
-// let currentPlayer = player1.coin;
-// const coolBoard = Board();
-
-// const handleClick = () => {
-//   const currentCell = document.getElementById(this.id);
-//   const choice = document.createElement('p');
-//   choice.setAttribute('class', 'choice');
-//   // REFACTOR THIS FOR ? :
-//   if (currentPlayer === player2) {
-//     choice.appendChild(document.createTextNode(player2.coin));
-//     coolBoard.updateBoard(this.id, player2.coin);
-//     if (coolBoard.won(player2.coin) === true) {
-//       console.log(`${player2.name} is the winner`);
-//     }
-//     if (coolBoard.draw() === true) {
-//       console.log('Its a draw');
-//     }
-//     currentPlayer = player1;
-//   } else {
-//     choice.appendChild(document.createTextNode(player1.coin));
-//     coolBoard.updateBoard(this.id, player1.coin);
-//     if (coolBoard.won(player1.coin) === true) {
-//       console.log(`${player1.name} is the winner`);
-//     }
-//     if (coolBoard.draw() === true) {
-//       console.log('Its a draw');
-//     }
-//     currentPlayer = player2;
-//   }
-//   //
-//   currentCell.appendChild(choice);
-// };
-
-// cells.forEach((cell) => {
-//   cell.addEventListener('click', handleClick, { once: true });
-// });
