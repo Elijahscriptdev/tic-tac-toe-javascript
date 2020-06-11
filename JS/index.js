@@ -115,25 +115,17 @@ const Board = () => {
 
 const logicOfGame = (player1, player2, gameBoard, cellId) => {
   const placeMove = () => {
-    if (gameBoard.currentPlayer === player2.coin) {
-      gameBoard.updateBoard(cellId, player2.coin);
-      if (gameBoard.won(player2.coin) === true) {
-        console.log(`${player2.name} is the winner`);
+    const coin = gameBoard.getCurrentPlayer();
+    gameBoard.updateBoard(cellId, coin);
+    if (gameBoard.won(coin) === true) {
+      if (coin === player1.coin) {
+        console.log(`${player1.name} is the winner!`);
+      } else {
+        console.log(`${player2.name} is the winner!`);
       }
-      if (gameBoard.draw() === true) {
-        console.log('Its a draw');
-      }
-      gameBoard.changeCurrentPlayer();
-    } else {
-      gameBoard.updateBoard(cellId, player1.coin);
-      if (gameBoard.won(player1.coin) === true) {
-        console.log(`${player1.name} is the winner`);
-      }
-      if (gameBoard.draw() === true) {
-        console.log('Its a draw');
-      }
-      gameBoard.changeCurrentPlayer();
     }
+    console.log(gameBoard.getBoard(coin));
+    gameBoard.changeCurrentPlayer();
   };
   return { placeMove };
 };
