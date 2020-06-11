@@ -1,4 +1,4 @@
-# [Javascript Project: Library]
+# [Javascript Project: Tic Tac Toe]
 
 > In this project, we are going to make a simple Javascript a Tic Tac Toe game you can play in your browser!
 > . Awesomized with Bootstrap.
@@ -6,8 +6,7 @@
 ---
 
 ## Screenshots
-
-### Homepage
+![Web](https://github.com/Elijahscriptdev/tic-tac-toe-javascript/blob/user-interface/tictactoe.png?raw=true)
 
 ---
 
@@ -20,10 +19,11 @@
 - Fatkun
 - W3 Validators
 - Bootstrap
+- Javascript
 
 ## Live Demo
 
-[Live Demo Link](https://raw.githack.com/sz16900/library/development/index.html)
+[Live Demo Link](https://raw.githack.com/Elijahscriptdev/tic-tac-toe-javascript/user-interface/index.html)
 
 ---
 
