@@ -128,7 +128,7 @@ const restartGame = () => {
   window.location.reload();
 };
 
-const endGameMessage = (name) => {
+const endGameMessage = (name, draw) => {
   const mainContainer = document.getElementById('main-container');
   const boardContainer = document.getElementById('board');
   const restartContainer = document.getElementById('restart-container');
@@ -143,7 +143,15 @@ const endGameMessage = (name) => {
   resetButton.setAttribute('id', 'restart');
   resetButton.addEventListener('click', restartGame);
   // Start appending to main container
-  endGameMessage.appendChild(document.createTextNode(`${name} is the winner`));
+  if (draw === true) {
+    endGameMessage.appendChild(
+      document.createTextNode("Wow! It's a tied game!!"),
+    );
+  } else {
+    endGameMessage.appendChild(
+      document.createTextNode(`${name} is the winner`),
+    );
+  }
   restartContainer.appendChild(endGameMessage);
   restartContainer.appendChild(resetButton);
 
@@ -155,11 +163,13 @@ const logicOfGame = (player1, player2, gameBoard, cellId) => {
   const placeMove = () => {
     const coin = gameBoard.getCurrentPlayer();
     gameBoard.updateBoard(cellId, coin);
-    if (gameBoard.won(coin) === true) {
+    if (gameBoard.draw() === true) {
+      endGameMessage(player1.name, true);
+    } else if (gameBoard.won(coin) === true) {
       if (coin === player1.coin) {
-        endGameMessage(player1.name, gameBoard);
+        endGameMessage(player1.name, false);
       } else {
-        endGameMessage(player2.name, gameBoard);
+        endGameMessage(player2.name, false);
       }
     }
     gameBoard.changeCurrentPlayer();
