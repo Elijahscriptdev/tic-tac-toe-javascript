@@ -27,6 +27,23 @@
   align-content: center;
 }
 
+#restart-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+#restart-container h1 {
+  font-size: 6em;
+}
+
+#restart-container button {
+  width: 30%;
+  margin: 0 auto;
+}
+
 .cell {
   width: 100px;
   height: 100px;
@@ -79,4 +96,9 @@
 
 .hidden {
   display: none;
+}
+
+.form-group label {
+  font-size: 2em;
+  font-weight: 800;
 }

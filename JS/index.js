@@ -6,7 +6,7 @@ const Player = (askedName, askedCoin) => {
 
 const Board = () => {
   // Do not pass the board
-  const gameBoard = [
+  let gameBoard = [
     ['one', 'two', 'three'],
     ['four', 'five', 'six'],
     ['seven', 'eight', 'nine'],
@@ -20,6 +20,15 @@ const Board = () => {
     } else {
       currentPlayer = 'X';
     }
+  };
+
+  const restartBoard = () => {
+    gameBoard = [
+      ['one', 'two', 'three'],
+      ['four', 'five', 'six'],
+      ['seven', 'eight', 'nine'],
+    ];
+    currentPlayer = 'X';
   };
 
   const getBoard = () => gameBoard;
@@ -46,9 +55,9 @@ const Board = () => {
 
   const across1 = (coin) => {
     if (
-      gameBoard[0][0] === gameBoard[1][1] &&
-      gameBoard[0][0] === gameBoard[2][2] &&
-      gameBoard[0][0] === coin
+      gameBoard[0][0] === gameBoard[1][1]
+      && gameBoard[0][0] === gameBoard[2][2]
+      && gameBoard[0][0] === coin
     ) {
       return true;
     }
@@ -57,9 +66,9 @@ const Board = () => {
 
   const across2 = (coin) => {
     if (
-      gameBoard[0][2] === gameBoard[1][1] &&
-      gameBoard[0][2] === gameBoard[2][0] &&
-      gameBoard[0][2] === coin
+      gameBoard[0][2] === gameBoard[1][1]
+      && gameBoard[0][2] === gameBoard[2][0]
+      && gameBoard[0][2] === coin
     ) {
       return true;
     }
@@ -69,9 +78,9 @@ const Board = () => {
   const sidesHorizontal = (coin) => {
     for (let i = 0; i < gameBoard.length; i += 1) {
       if (
-        gameBoard[i][0] === gameBoard[i][1] &&
-        gameBoard[i][0] === gameBoard[i][2] &&
-        gameBoard[i][0] === coin
+        gameBoard[i][0] === gameBoard[i][1]
+        && gameBoard[i][0] === gameBoard[i][2]
+        && gameBoard[i][0] === coin
       ) {
         return true;
       }
@@ -82,9 +91,9 @@ const Board = () => {
   const sidesVertical = (coin) => {
     for (let i = 0; i < gameBoard.length; i += 1) {
       if (
-        gameBoard[0][i] === gameBoard[1][i] &&
-        gameBoard[0][i] === gameBoard[2][i] &&
-        gameBoard[0][i] === coin
+        gameBoard[0][i] === gameBoard[1][i]
+        && gameBoard[0][i] === gameBoard[2][i]
+        && gameBoard[0][i] === coin
       ) {
         return true;
       }
@@ -94,9 +103,10 @@ const Board = () => {
 
   const won = (coin) => {
     if (
-      (across1(coin) === true || across2(coin) === true,
-      sidesHorizontal(coin) === true,
-      sidesVertical(coin) === true)
+      across1(coin) === true
+      || across2(coin) === true
+      || sidesHorizontal(coin) === true
+      || sidesVertical(coin) === true
     ) {
       return true;
     }
@@ -110,7 +120,35 @@ const Board = () => {
     draw,
     getCurrentPlayer,
     changeCurrentPlayer,
+    restartBoard,
   };
+};
+
+const restartGame = () => {
+  window.location.reload();
+};
+
+const endGameMessage = (name) => {
+  const mainContainer = document.getElementById('main-container');
+  const boardContainer = document.getElementById('board');
+  const restartContainer = document.getElementById('restart-container');
+  const endGameMessage = document.createElement('h1');
+  const resetButton = document.createElement('button');
+  boardContainer.classList.add('hidden');
+  restartContainer.classList.remove('hidden');
+  // Create Button
+  resetButton.appendChild(document.createTextNode('RESET'));
+  resetButton.classList.add('btn');
+  resetButton.classList.add('btn-success');
+  resetButton.setAttribute('id', 'restart');
+  resetButton.addEventListener('click', restartGame);
+  // Start appending to main container
+  endGameMessage.appendChild(document.createTextNode(`${name} is the winner`));
+  restartContainer.appendChild(endGameMessage);
+  restartContainer.appendChild(resetButton);
+
+  mainContainer.appendChild(boardContainer);
+  mainContainer.appendChild(restartContainer);
 };
 
 const logicOfGame = (player1, player2, gameBoard, cellId) => {
@@ -119,12 +157,11 @@ const logicOfGame = (player1, player2, gameBoard, cellId) => {
     gameBoard.updateBoard(cellId, coin);
     if (gameBoard.won(coin) === true) {
       if (coin === player1.coin) {
-        console.log(`${player1.name} is the winner!`);
+        endGameMessage(player1.name, gameBoard);
       } else {
-        console.log(`${player2.name} is the winner!`);
+        endGameMessage(player2.name, gameBoard);
       }
     }
-    console.log(gameBoard.getBoard(coin));
     gameBoard.changeCurrentPlayer();
   };
   return { placeMove };
@@ -138,6 +175,7 @@ const updatePageBoard = (cellId, coin) => {
   currentCell.appendChild(choice);
 };
 
+/* eslint-disable */
 const initializeGame = () => {
   const mainContainer = document.getElementById('main-container');
   // Grab user info and initialize player + board
@@ -174,3 +212,4 @@ const initializeGame = () => {
     );
   });
 };
+/* eslint-enable */

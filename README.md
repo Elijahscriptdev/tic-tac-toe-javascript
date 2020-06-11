@@ -1,15 +1,13 @@
 # [Javascript Project: Library]
 
 > In this project, we are going to make a simple Javascript a Tic Tac Toe game you can play in your browser!
-. Awesomized with Bootstrap.
+> . Awesomized with Bootstrap.
 
 ---
 
 ## Screenshots
 
 ### Homepage
-
-
 
 ---
 
@@ -60,16 +58,16 @@ Contributions, issues and feature requests are welcome! Start by:
 
 ## Authors
 
-👤 **Elijah Obominuru**
-
-[Github](https://github.com/Elijahscriptdev) | [Twitter](https://twitter.com/ElijahObominuru) | [LinkedIn](https://www.linkedin.com/in/elijah-obominuru-0b730b143/)
-
 👤 **Seth Zea**
 
 - Github: [@sz16900](https://github.com/sz16900)
 - Twitter: [@_sethzea_](https://twitter.com/_sethzea_)
 - Linkedin: [linkedin](https://www.linkedin.com/in/seth-zea-9481a8148/)
 - Email: zea.seth@gmail.com
+
+👤 **Elijah Obominuru**
+
+[Github](https://github.com/Elijahscriptdev) | [Twitter](https://twitter.com/ElijahObominuru) | [LinkedIn](https://www.linkedin.com/in/elijah-obominuru-0b730b143/)
 
 ---
 
@@ -86,7 +84,8 @@ Give a ⭐️ if you like this project!
 ## Future Features
 
 - A better mobile friendly experience
-- Cleaner log in / sign up pages
+- User name preservation upon reset
+- Better modularization of objects
 
 ---
 
