@@ -163,16 +163,20 @@ const logicOfGame = (player1, player2, gameBoard, cellId) => {
   const placeMove = () => {
     const coin = gameBoard.getCurrentPlayer();
     gameBoard.updateBoard(cellId, coin);
-    if (gameBoard.draw() === true) {
-      endGameMessage(player1.name, true);
-    } else if (gameBoard.won(coin) === true) {
+    if (gameBoard.won(coin) === true) {
       if (coin === player1.coin) {
         endGameMessage(player1.name, false);
       } else {
         endGameMessage(player2.name, false);
       }
+      return 'Done';
+    }
+    if (gameBoard.draw() === true) {
+      endGameMessage(player1.name, true);
+      return 'Done';
     }
     gameBoard.changeCurrentPlayer();
+    return 'Done';
   };
   return { placeMove };
 };
