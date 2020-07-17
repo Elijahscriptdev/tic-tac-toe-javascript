@@ -55,9 +55,9 @@ const Board = () => {
 
   const across1 = (coin) => {
     if (
-      gameBoard[0][0] === gameBoard[1][1]
-      && gameBoard[0][0] === gameBoard[2][2]
-      && gameBoard[0][0] === coin
+      gameBoard[0][0] === gameBoard[1][1] &&
+      gameBoard[0][0] === gameBoard[2][2] &&
+      gameBoard[0][0] === coin
     ) {
       return true;
     }
@@ -66,9 +66,9 @@ const Board = () => {
 
   const across2 = (coin) => {
     if (
-      gameBoard[0][2] === gameBoard[1][1]
-      && gameBoard[0][2] === gameBoard[2][0]
-      && gameBoard[0][2] === coin
+      gameBoard[0][2] === gameBoard[1][1] &&
+      gameBoard[0][2] === gameBoard[2][0] &&
+      gameBoard[0][2] === coin
     ) {
       return true;
     }
@@ -78,9 +78,9 @@ const Board = () => {
   const sidesHorizontal = (coin) => {
     for (let i = 0; i < gameBoard.length; i += 1) {
       if (
-        gameBoard[i][0] === gameBoard[i][1]
-        && gameBoard[i][0] === gameBoard[i][2]
-        && gameBoard[i][0] === coin
+        gameBoard[i][0] === gameBoard[i][1] &&
+        gameBoard[i][0] === gameBoard[i][2] &&
+        gameBoard[i][0] === coin
       ) {
         return true;
       }
@@ -91,9 +91,9 @@ const Board = () => {
   const sidesVertical = (coin) => {
     for (let i = 0; i < gameBoard.length; i += 1) {
       if (
-        gameBoard[0][i] === gameBoard[1][i]
-        && gameBoard[0][i] === gameBoard[2][i]
-        && gameBoard[0][i] === coin
+        gameBoard[0][i] === gameBoard[1][i] &&
+        gameBoard[0][i] === gameBoard[2][i] &&
+        gameBoard[0][i] === coin
       ) {
         return true;
       }
@@ -103,10 +103,10 @@ const Board = () => {
 
   const won = (coin) => {
     if (
-      across1(coin) === true
-      || across2(coin) === true
-      || sidesHorizontal(coin) === true
-      || sidesVertical(coin) === true
+      across1(coin) === true ||
+      across2(coin) === true ||
+      sidesHorizontal(coin) === true ||
+      sidesVertical(coin) === true
     ) {
       return true;
     }
@@ -145,11 +145,11 @@ const endGameMessage = (name, draw) => {
   // Start appending to main container
   if (draw === true) {
     endGameMessage.appendChild(
-      document.createTextNode("Wow! It's a tied game!!"),
+      document.createTextNode("Wow! It's a tied game!!")
     );
   } else {
     endGameMessage.appendChild(
-      document.createTextNode(`${name} is the winner`),
+      document.createTextNode(`${name} is the winner`)
     );
   }
   restartContainer.appendChild(endGameMessage);
@@ -191,8 +191,10 @@ const updatePageBoard = (cellId, coin) => {
 
 /* eslint-disable */
 const initializeGame = () => {
+  console.log('also here');
   const mainContainer = document.getElementById('main-container');
   // Grab user info and initialize player + board
+
   const input1 = document.getElementById('player-1').value;
   const input2 = document.getElementById('player-2').value;
   const player1 = Player(input1, 'X');
@@ -201,6 +203,7 @@ const initializeGame = () => {
 
   // Lets hide the form
   const playerInput = document.getElementById('player-input');
+  console.log(playerInput);
   playerInput.removeAttribute('id');
   playerInput.classList.add('hidden');
   mainContainer.append(playerInput);
@@ -227,3 +230,11 @@ const initializeGame = () => {
   });
 };
 /* eslint-enable */
+
+const addEvent = () => {
+  console.log('here');
+  const startBtn = document.querySelector('#start-game-btn');
+  startBtn.addEventListener('click', initializeGame);
+};
+
+export default addEvent;
