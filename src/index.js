@@ -1,4 +1,4 @@
 import './css/styles.css';
-import addEvent from './JS/game';
+import addEvent from './js/game';
 
 addEvent();
