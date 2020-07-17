@@ -1,10 +1,10 @@
-const Player = (askedName, askedCoin) => {
+export const Player = (askedName, askedCoin) => {
   const name = askedName;
   const coin = askedCoin;
   return { name, coin };
 };
 
-const Board = () => {
+export const Board = () => {
   // Do not pass the board
   let gameBoard = [
     ['one', 'two', 'three'],
@@ -231,10 +231,8 @@ const initializeGame = () => {
 };
 /* eslint-enable */
 
-const addEvent = () => {
+export const addEvent = () => {
   console.log('here');
   const startBtn = document.querySelector('#start-game-btn');
   startBtn.addEventListener('click', initializeGame);
 };
-
-export default addEvent;
