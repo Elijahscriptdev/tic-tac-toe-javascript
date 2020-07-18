@@ -31,7 +31,7 @@ const displayBody = () => {
       </div>
 
       <div id="restart-container" class="hidden"></div>
-`
+`;
 };
 
 export default displayBody;

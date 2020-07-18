@@ -1,12 +1,4 @@
-import { Player, Board } from '../js/game';
-
-describe('Tests Player Creation', () => {
-  test('return the player name and token', () => {
-    const player = Player('eli', 'O');
-    expect(player.name).toBe('eli');
-    expect(player.coin).toBe('O');
-  });
-});
+import { Board } from '../js/board';
 
 describe('Tests Board Creation', () => {
   const board = Board();
