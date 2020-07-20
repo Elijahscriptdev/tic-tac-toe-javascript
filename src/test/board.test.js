@@ -22,12 +22,28 @@ describe('Tests Board Creation', () => {
     ];
     expect(board.getBoard()).toEqual(dummy);
   });
-  test('checks that indeed afterEach does reset the board', () => {
+  test('checks that indeed .afterEach does reset the board', () => {
     const dummy = [
       ['one', 'two', 'three'],
       ['four', 'five', 'six'],
       ['seven', 'eight', 'nine'],
     ];
     expect(board.getBoard()).toEqual(dummy);
+  });
+});
+
+describe('Tests Board Logic', () => {
+  const board = Board();
+  afterEach(() => {
+    board.restartBoard();
+  });
+  test('checks if game is draw', () => {
+    const dummy = [
+      ['X', 'O', 'X'],
+      ['X', 'O', 'X'],
+      ['O', 'X', 'O'],
+    ];
+    board.drawTest(dummy);
+    expect(board.draw()).toBeTruthy();
   });
 });
