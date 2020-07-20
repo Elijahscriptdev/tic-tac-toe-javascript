@@ -46,4 +46,44 @@ describe('Tests Board Logic', () => {
     board.drawTest(dummy);
     expect(board.draw()).toBeTruthy();
   });
+
+  test('checks if there is a winner', () => {
+    const dummy = [
+      ['X', 'O', 'X'],
+      ['X', 'X', 'X'],
+      ['O', 'X', 'O'],
+    ];
+    board.wonTest(dummy);
+    expect(board.won('X')).toBeTruthy();
+  });
+
+  test('checks if there is a winner across left to right', () => {
+    const dummy = [
+      ['X', 'O', 'X'],
+      ['X', 'X', 'O'],
+      ['O', 'X', 'X'],
+    ];
+    board.wonTest(dummy);
+    expect(board.won('X')).toBeTruthy();
+  });
+
+  test('checks if there is a winner across right to left', () => {
+    const dummy = [
+      ['X', 'O', 'X'],
+      ['O', 'X', 'O'],
+      ['X', 'O', 'X'],
+    ];
+    board.wonTest(dummy);
+    expect(board.won('X')).toBeTruthy();
+  });
+
+  test('checks if there is a winner vertically', () => {
+    const dummy = [
+      ['X', 'O', 'O'],
+      ['X', 'X', 'O'],
+      ['X', 'O', 'X'],
+    ];
+    board.wonTest(dummy);
+    expect(board.won('X')).toBeTruthy();
+  });
 });

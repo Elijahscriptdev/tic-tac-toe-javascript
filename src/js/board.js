@@ -49,9 +49,9 @@ const Board = () => {
 
   const across1 = (coin) => {
     if (
-      gameBoard[0][0] === gameBoard[1][1] &&
-      gameBoard[0][0] === gameBoard[2][2] &&
-      gameBoard[0][0] === coin
+      gameBoard[0][0] === gameBoard[1][1]
+      && gameBoard[0][0] === gameBoard[2][2]
+      && gameBoard[0][0] === coin
     ) {
       return true;
     }
@@ -60,9 +60,9 @@ const Board = () => {
 
   const across2 = (coin) => {
     if (
-      gameBoard[0][2] === gameBoard[1][1] &&
-      gameBoard[0][2] === gameBoard[2][0] &&
-      gameBoard[0][2] === coin
+      gameBoard[0][2] === gameBoard[1][1]
+      && gameBoard[0][2] === gameBoard[2][0]
+      && gameBoard[0][2] === coin
     ) {
       return true;
     }
@@ -72,9 +72,9 @@ const Board = () => {
   const sidesHorizontal = (coin) => {
     for (let i = 0; i < gameBoard.length; i += 1) {
       if (
-        gameBoard[i][0] === gameBoard[i][1] &&
-        gameBoard[i][0] === gameBoard[i][2] &&
-        gameBoard[i][0] === coin
+        gameBoard[i][0] === gameBoard[i][1]
+        && gameBoard[i][0] === gameBoard[i][2]
+        && gameBoard[i][0] === coin
       ) {
         return true;
       }
@@ -85,9 +85,9 @@ const Board = () => {
   const sidesVertical = (coin) => {
     for (let i = 0; i < gameBoard.length; i += 1) {
       if (
-        gameBoard[0][i] === gameBoard[1][i] &&
-        gameBoard[0][i] === gameBoard[2][i] &&
-        gameBoard[0][i] === coin
+        gameBoard[0][i] === gameBoard[1][i]
+        && gameBoard[0][i] === gameBoard[2][i]
+        && gameBoard[0][i] === coin
       ) {
         return true;
       }
@@ -97,10 +97,10 @@ const Board = () => {
 
   const won = (coin) => {
     if (
-      across1(coin) === true ||
-      across2(coin) === true ||
-      sidesHorizontal(coin) === true ||
-      sidesVertical(coin) === true
+      across1(coin) === true
+      || across2(coin) === true
+      || sidesHorizontal(coin) === true
+      || sidesVertical(coin) === true
     ) {
       return true;
     }
@@ -109,6 +109,10 @@ const Board = () => {
 
   // For Testing
   const drawTest = (dummy) => {
+    gameBoard = dummy;
+  };
+
+  const wonTest = (dummy) => {
     gameBoard = dummy;
   };
 
@@ -121,6 +125,7 @@ const Board = () => {
     changeCurrentPlayer,
     restartBoard,
     drawTest,
+    wonTest,
   };
 };
 
