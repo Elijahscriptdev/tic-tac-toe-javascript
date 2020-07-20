@@ -1,4 +1,4 @@
-import { Board } from '../js/board';
+import Board from '../js/board';
 
 describe('Tests Board Creation', () => {
   const board = Board();

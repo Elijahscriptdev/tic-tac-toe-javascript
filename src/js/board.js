@@ -1,4 +1,4 @@
-export const Board = () => {
+const Board = () => {
   // Do not pass the board
   let gameBoard = [
     ['one', 'two', 'three'],
@@ -117,3 +117,5 @@ export const Board = () => {
     restartBoard,
   };
 };
+
+export default Board;

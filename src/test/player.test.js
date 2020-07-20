@@ -1,4 +1,4 @@
-import { Player } from '../js/player';
+import Player from '../js/player';
 
 describe('Tests Player Creation', () => {
   test('return the player name and token', () => {

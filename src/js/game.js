@@ -1,15 +1,11 @@
-import { Player } from './player';
-import { Board } from './board';
+import Player from './player';
+import Board from './board';
 import {
   updatePageBoard,
   endGameMessage,
   hideForm,
   bringUpForm,
 } from './pageHandler';
-
-export const restartGame = () => {
-  window.location.reload();
-};
 
 const logicOfGame = (player1, player2, gameBoard, cellId) => {
   const placeMove = () => {
@@ -67,7 +63,9 @@ const initializeGame = () => {
 };
 /* eslint-enable */
 
-export const addEvent = () => {
+const addEvent = () => {
   const startBtn = document.querySelector('#start-game-btn');
   startBtn.addEventListener('click', initializeGame);
 };
+
+export default addEvent;

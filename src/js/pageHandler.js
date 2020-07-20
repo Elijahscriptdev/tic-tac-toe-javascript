@@ -1,4 +1,6 @@
-import { restartGame } from './game';
+const restartGame = () => {
+  window.location.reload();
+};
 
 export const endGameMessage = (name, draw) => {
   const mainContainer = document.getElementById('main-container');
@@ -44,7 +46,6 @@ export const hideForm = () => {
 
   // Lets hide the form
   const playerInput = document.getElementById('player-input');
-  console.log(playerInput);
   playerInput.removeAttribute('id');
   playerInput.classList.add('hidden');
   mainContainer.append(playerInput);
